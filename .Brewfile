@@ -1,64 +1,35 @@
-ca-certificates
-fd
-fzf
-gettext
-gmp
-gnupg
-gnutls
-go
-lazygit
-libassuan
-libevent
-libgcrypt
-libgpg-error
-libidn2
-libksba
-libnghttp2
-libtasn1
-libunistring
-libusb
-libuv
-lpeg
-luajit
-luv
-neovim
-nettle
-npth
-openssl@3
-p11-kit
-pcre2
-pinentry
-readline
-ripgrep
-sqlite
-tree
-tree-sitter
-unbound
-unibilium
-utf8proc
-yadm
-bitwarden
-bruno
-firefox
-font-anonymice-nerd-font
-font-caskaydia-cove-nerd-font
-font-caskaydia-mono-nerd-font
-font-fira-code-nerd-font
-font-fira-mono-nerd-font
-font-hack-nerd-font
-font-jetbrains-mono-nerd-font
-font-monofur-nerd-font
-font-mononoki-nerd-font
-font-ubuntu-mono-nerd-font
-font-ubuntu-nerd-font
-font-victor-mono-nerd-font
-font-zed-mono-nerd-font
-ghostty
-iterm2
-linearmouse
-localsend
-obsidian
-raycast
-rectangle
-syncthing-app
-visual-studio-code
+brew "fd"
+brew "fzf"
+brew "gnupg"
+brew "go"
+brew "lazygit"
+brew "neovim"
+brew "ripgrep"
+brew "sqlite"
+brew "tree"
+brew "yadm"
+cask "bitwarden"
+cask "bruno"
+cask "firefox"
+cask "font-anonymice-nerd-font"
+cask "font-caskaydia-cove-nerd-font"
+cask "font-caskaydia-mono-nerd-font"
+cask "font-fira-code-nerd-font"
+cask "font-fira-mono-nerd-font"
+cask "font-hack-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-monofur-nerd-font"
+cask "font-mononoki-nerd-font"
+cask "font-ubuntu-mono-nerd-font"
+cask "font-ubuntu-nerd-font"
+cask "font-victor-mono-nerd-font"
+cask "font-zed-mono-nerd-font"
+cask "ghostty"
+cask "iterm2"
+cask "linearmouse"
+cask "localsend"
+cask "obsidian"
+cask "raycast"
+cask "rectangle"
+cask "syncthing-app"
+cask "visual-studio-code"
