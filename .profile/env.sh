@@ -8,5 +8,7 @@ if [ -d "$HOME/.local/bin" ]; then
 fi
 
 
+export GOPATH=$HOME/.local/share/go
 export PATH="$HOME/.bin:$PATH"
 export PATH="$PATH:$GOPATH/bin"
+

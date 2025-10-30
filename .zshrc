@@ -117,12 +117,6 @@ if [ -d "$HOME/.profile" ]; then
 fi
 
 
-export DOT_HOME="$HOME/.dotfiles"
-export DOT_DATA="$HOME/.dotfiles_data"
-export WORKSPACE_HOME="$HOME/Workspace" 
-
-source "$DOT_HOME/etc/init.sh" 
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
