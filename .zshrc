@@ -102,6 +102,20 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+
+# source all shell environment properties from 
+# $HOME/.profile/*.sh
+if [ -d "$HOME/.profile" ]; then
+	for i in $HOME/.profile/*.sh; do
+		if [ -r $i ]; then
+			. $i
+		fi
+	done
+
+	unset i
+fi
+
 
 export DOT_HOME="$HOME/.dotfiles"
 export DOT_DATA="$HOME/.dotfiles_data"
