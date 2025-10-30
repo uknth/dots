@@ -51,12 +51,54 @@ return {
           prefix = "",
         },
       }
+
       vim.diagnostic.config(config)
 
       -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+      -- language configurations
+      -- Lua Language Overrides
+      vim.lsp.config["lua_ls"] = {
+        on_attach = require("utils.lsp").on_attach,
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = "Replace",
+            },
+            diagnostics = {
+              globals = { "vim" },
+            },
+            workspace = {
+              library = {
+                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                [vim.fn.stdpath("config") .. "/lua"] = true,
+              },
+            },
+          },
+        },
+      }
+
+      vim.lsp.enable('lua_ls')
+
+      -- Go Language Overrides
+      vim.lsp.config["gopls"] = {
+        on_attach = require("utils.lsp").on_attach,
+        capabilities = capabilities,
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+            },
+            staticcheck = true,
+            gofumpt = true,
+          },
+        },
+      }
+
+      vim.lsp.enable('gopls')
     end,
   },
 }
