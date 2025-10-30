@@ -58,10 +58,13 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+      vim.lsp.config["*"] = {
+        capabilities = capabilities,
+      }
+
       -- language configurations
       -- Lua Language Overrides
       vim.lsp.config["lua_ls"] = {
-        on_attach = require("utils.lsp").on_attach,
         capabilities = capabilities,
         settings = {
           Lua = {
@@ -81,11 +84,9 @@ return {
         },
       }
 
-      vim.lsp.enable('lua_ls')
 
       -- Go Language Overrides
       vim.lsp.config["gopls"] = {
-        on_attach = require("utils.lsp").on_attach,
         capabilities = capabilities,
         settings = {
           gopls = {
@@ -98,7 +99,9 @@ return {
         },
       }
 
+      vim.lsp.enable('lua_ls')
       vim.lsp.enable('gopls')
+
     end,
   },
 }
