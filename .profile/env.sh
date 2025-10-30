@@ -1,3 +1,5 @@
+#!/bin/bash
+
 git config --global url."git@github.com:".insteadOf "https://github.com/"
 
 # set PATH so it includes user's private bin if it exists
