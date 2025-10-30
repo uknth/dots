@@ -1,0 +1,4 @@
+theme = "Atom One Light"
+font-family = "CaskaydiaCove Nerd Font Mono"
+command = /bin/zsh --login --interactive
+font-size = 15
