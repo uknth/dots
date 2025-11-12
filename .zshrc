@@ -125,3 +125,7 @@ fpath=(/Users/uknth/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+# Added by Windsurf
+export PATH="/Users/uknth/.codeium/windsurf/bin:$PATH"
+export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
