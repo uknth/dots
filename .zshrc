@@ -129,3 +129,4 @@ compinit
 # Added by Windsurf
 export PATH="/Users/uknth/.codeium/windsurf/bin:$PATH"
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
+source <(fzf --zsh)
