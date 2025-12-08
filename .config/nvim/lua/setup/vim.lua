@@ -30,4 +30,4 @@ end
 -- set relative line number
 vim.cmd.set("nu")
 vim.cmd.set("relativenumber")
-
+vim.opt.list = false

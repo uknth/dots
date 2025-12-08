@@ -37,3 +37,7 @@ require('plugins.code')
 -- AI related Plugins
 --
 require('plugins.ai')
+
+-- Colorschemes
+--
+require('plugins.colorscheme')
