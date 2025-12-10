@@ -34,3 +34,13 @@ require("pckr").add({
 		end,
 	},
 })
+
+vim.keymap.set('n', "gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
+vim.keymap.set('n', "gr", vim.lsp.buf.references, { desc = "Go to References" })
+vim.keymap.set('n', "gI", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
+vim.keymap.set('n', "gy", vim.lsp.buf.type_definition, { desc = "Go to t[Y]pe definition" })
+vim.keymap.set('n', "gD", vim.lsp.buf.declaration, { desc = "Go to Declaration" })
+vim.keymap.set('n', "<leader>cr", vim.lsp.buf.rename, { desc = "Rename"})
+vim.keymap.set({ 'n', 'x' }, "<leader>cc", vim.lsp.codelens.run, { desc = "Run Codelens"})
+vim.keymap.set({ 'n', 'x' }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action"})
+vim.keymap.set('n', "K", function() return vim.lsp.buf.hover() end, { desc = "Hover action" })

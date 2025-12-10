@@ -13,7 +13,7 @@ This document lists all custom keymaps configured in this Neovim setup, along wi
 - [Search (Telescope)](#search-telescope)
 - [Code Navigation & Outline](#code-navigation--outline)
 - [Code Editing](#code-editing)
-- [Code Formatting](#code-formatting)
+- [Code Formatting & Actions](#code-formatting--actions)
 - [Comments](#comments)
 - [Diagnostics](#diagnostics)
 - [AI Features (Sidekick)](#ai-features-sidekick)
@@ -51,7 +51,7 @@ This document lists all custom keymaps configured in this Neovim setup, along wi
 
 | Mode | Key | Action | Description |
 |------|-----|--------|-------------|
-| `n` | `<leader>e` | `:Neotree toggle` | Toggle Neotree Explorer |
+| `n` | `<leader>e` | `:Neotree toggle` | Toggle Neotree |
 | `n` | `<leader>nf` | `:Neotree position=float` | Show Floating Explorer |
 | `n` | `<leader>nl` | `:Neotree position=left` | Show Explorer on Left |
 | `n` | `<leader>nb` | `:Neotree position=float buffers` | Show Floating Buffer Explorer |
@@ -64,11 +64,11 @@ This document lists all custom keymaps configured in this Neovim setup, along wi
 | Mode | Key | Action | Description |
 |------|-----|--------|-------------|
 | `n` | `<leader><leader>` | `telescope.builtin.find_files` | Search Files (Quick Access) |
-| `n` | `<leader>so` | `telescope.smart_open` | Search Smart Open |
-| `n` | `<leader>sf` | `telescope.builtin.find_files` | Search Files |
-| `n` | `<leader>sg` | `telescope.builtin.live_grep` | Search by Grepping |
-| `n` | `<leader>sb` | `telescope.builtin.buffers` | Search Buffers |
-| `n` | `<leader>sh` | `telescope.builtin.help_tags` | Search Help Tags |
+| `n` | `<leader>sf` | `telescope.builtin.find_files` | [S]earch [F]iles |
+| `n` | `<leader>so` | `telescope.extensions.smart_open` | [S]earch [S]mart Open (Frecency) |
+| `n` | `<leader>sg` | `telescope.builtin.live_grep` | [S]earch by [G]repping |
+| `n` | `<leader>sb` | `telescope.builtin.buffers` | [S]earch [B]uffers |
+| `n` | `<leader>sh` | `telescope.builtin.help_tags` | [S]earch [H]elp Tags |
 
 ---
 
@@ -80,6 +80,17 @@ This document lists all custom keymaps configured in this Neovim setup, along wi
 | `n` | `}` | `:AerialNext` | Jump to Next Symbol (Aerial) |
 | `n` | `<leader>fo` | `:AerialToggle!` | Toggle Code Outline |
 
+### LSP Navigation
+
+| Mode | Key | Action | Description |
+|------|-----|--------|-------------|
+| `n` | `gd` | `vim.lsp.buf.definition` | Goto Definition |
+| `n` | `gr` | `vim.lsp.buf.references` | Go to References |
+| `n` | `gI` | `vim.lsp.buf.implementation` | Go to Implementation |
+| `n` | `gy` | `vim.lsp.buf.type_definition` | Go to t[Y]pe Definition |
+| `n` | `gD` | `vim.lsp.buf.declaration` | Go to Declaration |
+| `n` | `K` | `vim.lsp.buf.hover` | Hover Documentation |
+
 ---
 
 ## Code Editing
@@ -88,17 +99,19 @@ This document lists all custom keymaps configured in this Neovim setup, along wi
 |------|-----|--------|-------------|
 | `x` | `<` | `<gv` | Better Indenting (maintains selection) |
 | `x` | `>` | `>gv` | Better Indenting (maintains selection) |
-| `n`, `x` | `n` | Smart next search | Next Search Result (auto-centers) |
-| `n`, `x` | `N` | Smart prev search | Previous Search Result (auto-centers) |
-| `i`, `n` | `<Tab>` | `sidekick.nes_jump_or_apply()` | Apply/Jump to Next Edit Suggestion |
+| `n`, `x`, `o` | `n` | Smart next search | Next Search Result (auto-centers) |
+| `n`, `x`, `o` | `N` | Smart prev search | Previous Search Result (auto-centers) |
 
 ---
 
-## Code Formatting
+## Code Formatting & Actions
 
 | Mode | Key | Action | Description |
 |------|-----|--------|-------------|
 | `n` | `<leader>ff` | `conform.format()` | Format Code (using conform.nvim) |
+| `n`, `x` | `<leader>ca` | `vim.lsp.buf.code_action` | Code Action |
+| `n`, `x` | `<leader>cc` | `vim.lsp.codelens.run` | Run Codelens |
+| `n` | `<leader>cr` | `vim.lsp.buf.rename` | Rename Symbol |
 
 ---
 
@@ -108,10 +121,10 @@ Using `mini.comment` plugin:
 
 | Mode | Key | Action | Description |
 |------|-----|--------|-------------|
-| `n` | `gcc` | Toggle comment | Comment/Uncomment Block |
-| `n` | `gcl` | Toggle comment | Comment/Uncomment Line |
-| `v` | `gcv` | Toggle comment | Comment/Uncomment Visual Selection |
-| `n` | `gct` | Toggle comment | Comment/Uncomment Text Object |
+| `n` | `gcc` | Toggle comment | Comment/Uncomment (motion/line) |
+| `n` | `gcl` | Toggle comment line | Comment/Uncomment Line |
+| `v` | `gcv` | Toggle comment visual | Comment/Uncomment Visual Selection |
+| `n` | `gct` | Toggle comment textobject | Comment/Uncomment Text Object |
 
 ---
 
@@ -133,12 +146,13 @@ Using `mini.comment` plugin:
 |------|-----|--------|-------------|
 | `n`, `t`, `i`, `x` | `<C-.>` | `sidekick.cli.toggle()` | Toggle Sidekick CLI |
 | `n` | `<leader>aa` | `sidekick.cli.toggle()` | Toggle Sidekick CLI |
-| `n` | `<leader>as` | `sidekick.cli.select()` | Select Sidekick CLI Agent |
-| `n` | `<leader>ad` | `sidekick.cli.close()` | Detach/Close CLI Session |
+| `n` | `<leader>as` | `sidekick.cli.select()` | Sidekick CLI Agent |
+| `n` | `<leader>ad` | `sidekick.cli.close()` | Detach a CLI Session |
 | `x`, `n` | `<leader>at` | `sidekick.cli.send({msg = "{this}"})` | Send Selection to Agent |
 | `n` | `<leader>af` | `sidekick.cli.send({msg = "{file}"})` | Send File to Agent |
 | `x` | `<leader>av` | `sidekick.cli.send({msg = "{selection}"})` | Send Visual Selection to Agent |
-| `x`, `n` | `<leader>ap` | `sidekick.cli.prompt()` | Select Sidekick Prompt |
+| `x`, `n` | `<leader>ap` | `sidekick.cli.prompt()` | Sidekick Select Prompt |
+| `i`, `n` | `<Tab>` | `sidekick.nes_jump_or_apply()` | Goto/Apply Next Edit Suggestion |
 
 ---
 
@@ -287,9 +301,6 @@ These are essential Vim keymaps that remain available in this configuration:
 | `i` | `<C-n>`, `<C-p>` | Auto-completion next/previous |
 | `i` | `<C-w>` | Delete word before cursor |
 | `i` | `<C-u>` | Delete all before cursor in line |
-| `n` | `gd` | Go to definition (LSP) |
-| `n` | `gr` | Go to references (LSP) |
-| `n` | `K` | Hover documentation (LSP) |
 
 ---
 
@@ -310,4 +321,5 @@ These are essential Vim keymaps that remain available in this configuration:
 2. **Option toggle prefix** is set to `\` for toggling common options (from mini.basics)
 3. Completion is handled by `mini.completion` - use `<C-n>` and `<C-p>` in insert mode
 4. Code formatting uses `conform.nvim` with support for multiple languages (Lua, Python, Rust, JavaScript, Go)
-5. LSP keymaps may be added automatically when LSP servers attach to buffers
+5. LSP keymaps are defined in `lua/plugins/lsp.lua` and are available when LSP servers are active
+6. Aerial code outline navigation with `{` and `}` is only available when Aerial attaches to a buffer

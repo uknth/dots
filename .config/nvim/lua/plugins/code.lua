@@ -15,6 +15,7 @@ require("pckr").add({
   }
 })
 
+
 -- Code Completion using mini.completion
 require("pckr").add({
 	{
@@ -39,9 +40,13 @@ require("pckr").add({
 				-- configuration here
 				--
 			})
-		end,
+
+
+    end,
 	},
 })
+
+
 
 -- Code Formatting
 require("pckr").add({
@@ -70,3 +75,4 @@ vim.keymap.set("n", "<leader>ff", function()
 end, { desc = "Code Format" })
 
 vim.keymap.set("n", "<leader>fo", "<cmd>AerialToggle!<CR>", { desc = "Toggle Outline" })
+

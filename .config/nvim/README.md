@@ -7,21 +7,28 @@ A modern, modular Neovim configuration focused on LSP, code completion, fuzzy fi
 ```
 .
 ├── init.lua                 # Entry point
+├── KEYMAPS.md               # Comprehensive keymap reference
+├── .gitignore               # Git ignore rules
+├── .neoconf.json            # Neoconf configuration
 ├── lua/
 │   ├── setup/              # Core setup modules
 │   │   ├── vim.lua         # Vim options and leader key
 │   │   ├── pckr.lua        # Package manager bootstrap
 │   │   ├── diagnostics.lua # Diagnostic signs and configuration
 │   │   ├── plugins.lua     # Plugin loader
-│   │   └── keymaps.lua     # Default keymaps
-│   └── plugins/            # Plugin configurations
-│       ├── telescope.lua   # Fuzzy finder
-│       ├── lsp.lua         # LSP and Mason
-│       ├── mini.lua        # Mini.nvim modules
-│       ├── treesitter.lua  # Syntax highlighting
-│       ├── ui.lua          # UI plugins (neo-tree, lualine, etc.)
-│       ├── code.lua        # Code completion and formatting
-│       └── ai.lua          # AI integrations (Sidekick)
+│   │   ├── keymaps.lua     # Default keymaps
+│   │   └── lang.lua        # Language-specific setup loader
+│   ├── plugins/            # Plugin configurations
+│   │   ├── telescope.lua   # Fuzzy finder
+│   │   ├── lsp.lua         # LSP and Mason
+│   │   ├── mini.lua        # Mini.nvim modules
+│   │   ├── treesitter.lua  # Syntax highlighting
+│   │   ├── ui.lua          # UI plugins (neo-tree, lualine, etc.)
+│   │   ├── code.lua        # Code completion and formatting
+│   │   ├── colorscheme.lua # Colorscheme plugins
+│   │   └── ai.lua          # AI integrations (Sidekick)
+│   └── lang/               # Language-specific configurations
+│       └── java.lua        # Java development with JDTLS
 └── after/
     └── ftplugin/           # Filetype-specific settings
         ├── lua.vim         # Lua: 2-space indentation
@@ -33,6 +40,7 @@ A modern, modular Neovim configuration focused on LSP, code completion, fuzzy fi
 ### Core Functionality
 - **Package Manager**: [pckr.nvim](https://github.com/lewis6991/pckr.nvim) - Fast, minimal plugin manager
 - **Leader Key**: `<Space>`
+- **Colorscheme**: NordFox (from nightfox.nvim) - Also includes Moonfly colors
 - **Line Numbers**: Enabled with relative numbering
 - **Default Indentation**: 4 spaces (customizable per filetype)
 
@@ -40,6 +48,7 @@ A modern, modular Neovim configuration focused on LSP, code completion, fuzzy fi
 
 #### Fuzzy Finding (Telescope)
 - **File search**: `<leader><leader>` or `<leader>sf`
+- **Smart open**: `<leader>so` (frecency-based file picker)
 - **Live grep**: `<leader>sg`
 - **Buffers**: `<leader>sb`
 - **Help tags**: `<leader>sh`
@@ -49,6 +58,7 @@ A modern, modular Neovim configuration focused on LSP, code completion, fuzzy fi
 - **LSP Config**: Neovim native LSP
 - **Mason**: Automatic LSP server installation
 - **Installed Servers**: lua_ls, vimls, gopls, copilot
+- **Java Support**: nvim-jdtls for advanced Java development features
 
 #### Treesitter
 - **Supported Languages**: bash, c, lua, vim, markdown, go, java, javascript, json, make, python, regex, yaml
@@ -63,7 +73,10 @@ A modern, modular Neovim configuration focused on LSP, code completion, fuzzy fi
   - Rust: rustfmt
   - JavaScript: prettier/prettierd
   - Go: gofmt
-- **Code Outline**: aerial.nvim (`<leader>fo` to toggle)
+- **Code Outline**: aerial.nvim
+  - Toggle: `<leader>fo`
+  - Previous symbol: `{`
+  - Next symbol: `}`
 
 #### UI Enhancements
 - **File Explorer**: neo-tree.nvim (`<leader>e` to toggle)
@@ -76,6 +89,8 @@ A modern, modular Neovim configuration focused on LSP, code completion, fuzzy fi
 #### AI Integration
 - **Sidekick**: AI-powered code suggestions and CLI integration
   - Toggle CLI: `<C-.>` or `<leader>aa`
+  - Select agent: `<leader>as`
+  - Detach/close session: `<leader>ad`
   - Send selection: `<leader>at`
   - Send file: `<leader>af`
   - Send visual: `<leader>av`
@@ -153,9 +168,11 @@ A modern, modular Neovim configuration focused on LSP, code completion, fuzzy fi
 ## Notes
 
 - Filetype-specific indentation is handled in `after/ftplugin/`
+- Language-specific configurations (like Java) are organized in `lua/lang/` and loaded via `lua/setup/lang.lua`
 - LSP servers are auto-installed via Mason
 - All plugin configs are modular and can be disabled by commenting out the require in `lua/setup/plugins.lua`
 - The configuration uses stable branches where available for reliability
+- A comprehensive keymap reference is available in `KEYMAPS.md`
 
 ## License
 
