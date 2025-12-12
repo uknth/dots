@@ -16,3 +16,10 @@ alias zola-run-wsl='docker run -u "$(id -u):$(id -g)" -v $PWD:/app --workdir /ap
 alias llama-cpp-run='docker run -d --gpus all -v /home/uknth/models:/models -p 8000:8000 ghcr.io/ggml-org/llama.cpp:server-cuda -m /models/qwen3/Qwen3-Coder-30B-A3B-Instruct-UD-Q3_K_XL.gguf --port 8000 --host 0.0.0.0 -n 512 --n-gpu-layers 25 --jinja --ctx-size 102400'
 
 alias brew-save='brew list | xargs -L1 > .Brewfile && yadm add .Brewfile'
+
+git_clone_data_platform() {
+    git clone "https://ujjwal.kanth%40harness.io:$PAT@git0.harness.io/l7B_kbSEQD2wjrM7PShm5w/PROD/Data_Platform/$1.git"
+}
+
+alias cc="cursor-agent"
+alias ca="cursor-agent"

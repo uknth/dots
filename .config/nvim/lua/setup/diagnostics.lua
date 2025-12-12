@@ -1,8 +1,8 @@
 -- set up diagnostics sign
-local signs = { 
-  Error = " ", 
-  Warn = " ", 
-  Hint = "󰗣 ", 
+local signs = {
+  Error = " ",
+  Warn = " ",
+  Hint = "󰗣 ",
   Info = " ",
 }
 

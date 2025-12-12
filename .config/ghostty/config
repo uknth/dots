@@ -2,3 +2,4 @@ theme = "Nordfox"
 font-family = "CaskaydiaCove Nerd Font Mono"
 command = /bin/zsh --login --interactive
 font-size = 14
+keybind = shift+enter=text:\x1b\r

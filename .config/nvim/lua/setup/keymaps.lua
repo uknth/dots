@@ -42,6 +42,7 @@ vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Se
 -- Diagnostics
 --
 vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, {desc = "Line Diagnostics"})
+vim.keymap.set("n", "<leader>x", vim.diagnostic.open_float, {desc = "Line Diagnostics"})
 
 -- util method to move to next or previous diagnostics, used below
 local function diagnostic_goto(next, severity)

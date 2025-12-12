@@ -65,10 +65,12 @@ This document lists all custom keymaps configured in this Neovim setup, along wi
 |------|-----|--------|-------------|
 | `n` | `<leader><leader>` | `telescope.builtin.find_files` | Search Files (Quick Access) |
 | `n` | `<leader>sf` | `telescope.builtin.find_files` | [S]earch [F]iles |
-| `n` | `<leader>so` | `telescope.extensions.smart_open` | [S]earch [S]mart Open (Frecency) |
+| `n` | `<leader>so` | `telescope.extensions.smart_open` | [S]earch Smart [O]pen (Frecency) |
 | `n` | `<leader>sg` | `telescope.builtin.live_grep` | [S]earch by [G]repping |
 | `n` | `<leader>sb` | `telescope.builtin.buffers` | [S]earch [B]uffers |
 | `n` | `<leader>sh` | `telescope.builtin.help_tags` | [S]earch [H]elp Tags |
+| `n` | `<leader>sk` | `telescope.builtin.keymaps` | [S]earch [K]eymaps |
+| `n` | `<leader>ss` | `telescope.extensions.persisted` | [S]earch [S]essions |
 
 ---
 
@@ -142,17 +144,28 @@ Using `mini.comment` plugin:
 
 ## AI Features (Sidekick)
 
+### NES (Next Edit Suggestions) - Copilot CLI
+
 | Mode | Key | Action | Description |
 |------|-----|--------|-------------|
-| `n`, `t`, `i`, `x` | `<C-.>` | `sidekick.cli.toggle()` | Toggle Sidekick CLI |
-| `n` | `<leader>aa` | `sidekick.cli.toggle()` | Toggle Sidekick CLI |
-| `n` | `<leader>as` | `sidekick.cli.select()` | Sidekick CLI Agent |
-| `n` | `<leader>ad` | `sidekick.cli.close()` | Detach a CLI Session |
+| `i`, `n` | `<Tab>` | `sidekick.nes_jump_or_apply()` | Accept/Navigate NES or Tab |
+| `i` | `<M-l>` | `sidekick.nes_accept()` | Accept Inline Suggestion |
+| `i` | `<M-]>` | Next suggestion | Next Inline Suggestion |
+| `i` | `<M-[>` | Previous suggestion | Previous Inline Suggestion |
+| `i` | `<M-e>` | `sidekick.nes_dismiss()` | Dismiss Inline Suggestion |
+
+### Agentic Window - cursor-agent
+
+| Mode | Key | Action | Description |
+|------|-----|--------|-------------|
+| `n`, `t`, `i`, `x` | `<C-.>` | `sidekick.cli.toggle()` | Toggle Agentic Window |
+| `n` | `<leader>aa` | `sidekick.cli.toggle()` | Toggle Agentic Window |
+| `n` | `<leader>as` | `sidekick.cli.select()` | Select Agent |
+| `n` | `<leader>ad` | `sidekick.cli.close()` | Close Agentic Session |
 | `x`, `n` | `<leader>at` | `sidekick.cli.send({msg = "{this}"})` | Send Selection to Agent |
 | `n` | `<leader>af` | `sidekick.cli.send({msg = "{file}"})` | Send File to Agent |
-| `x` | `<leader>av` | `sidekick.cli.send({msg = "{selection}"})` | Send Visual Selection to Agent |
-| `x`, `n` | `<leader>ap` | `sidekick.cli.prompt()` | Sidekick Select Prompt |
-| `i`, `n` | `<Tab>` | `sidekick.nes_jump_or_apply()` | Goto/Apply Next Edit Suggestion |
+| `x` | `<leader>av` | `sidekick.cli.send({msg = "{selection}"})` | Send Visual to Agent |
+| `x`, `n` | `<leader>ap` | `sidekick.cli.prompt()` | Select Prompt |
 
 ---
 
@@ -161,6 +174,39 @@ Using `mini.comment` plugin:
 | Mode | Key | Action | Description |
 |------|-----|--------|-------------|
 | `n` | `<leader>?` | `which-key.show()` | Show Buffer Local Keymaps (which-key) |
+
+---
+
+## Other Features
+
+### Session Management (Persisted)
+
+| Mode | Key | Action | Description |
+|------|-----|--------|-------------|
+| `n` | `<leader>ss` | `:Telescope persisted` | Search and load sessions |
+
+### Presentations (Marp)
+
+| Mode | Key | Action | Description |
+|------|-----|--------|-------------|
+| `n` | `<leader>MT` | `:MarpToggle` | Toggle Marp preview |
+| `n` | `<leader>MS` | `:MarpStatus` | Show Marp status |
+
+---
+
+## Completion
+
+Using `blink.cmp` plugin:
+
+| Mode | Key | Action | Description |
+|------|-----|--------|-------------|
+| `i` | `<Tab>` | Select next | Navigate to next item (or NES if no menu) |
+| `i` | `<S-Tab>` | Select previous | Navigate to previous item |
+| `i` | `<CR>` | Accept completion | Accept selected completion |
+| `i` | `<C-Space>` | Show/toggle menu | Show completion menu and documentation |
+| `i` | `<C-e>` | Hide menu | Hide completion menu |
+| `i` | `<C-u>` | Scroll doc up | Scroll documentation up |
+| `i` | `<C-d>` | Scroll doc down | Scroll documentation down |
 
 ---
 
@@ -319,7 +365,10 @@ These are essential Vim keymaps that remain available in this configuration:
 
 1. **mini.basics** plugin provides additional sensible defaults and basic mappings
 2. **Option toggle prefix** is set to `\` for toggling common options (from mini.basics)
-3. Completion is handled by `mini.completion` - use `<C-n>` and `<C-p>` in insert mode
-4. Code formatting uses `conform.nvim` with support for multiple languages (Lua, Python, Rust, JavaScript, Go)
-5. LSP keymaps are defined in `lua/plugins/lsp.lua` and are available when LSP servers are active
-6. Aerial code outline navigation with `{` and `}` is only available when Aerial attaches to a buffer
+3. **Completion**: `<Tab>` and `<S-Tab>` navigate blink.cmp menu when visible, otherwise handle NES suggestions
+4. **Code formatting** uses `conform.nvim` with support for multiple languages (Lua, Python, Rust, JavaScript, Go)
+5. **LSP keymaps** are defined in `lua/plugins/lsp.lua` and are available when LSP servers are active
+6. **Aerial code outline** navigation with `{` and `}` is only available when Aerial attaches to a buffer
+7. **Session management** via persisted.nvim - automatically saves/restores sessions per directory
+8. **AI features**: Tab key prioritizes blink.cmp menu → NES suggestions → normal Tab behavior
+9. **blink.cmp**: Fast completion engine built in Rust, requires nightly Rust toolchain

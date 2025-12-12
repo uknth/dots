@@ -7,7 +7,9 @@ A modern, modular Neovim configuration focused on LSP, code completion, fuzzy fi
 ```
 .
 ├── init.lua                 # Entry point
+├── README.md                # User documentation
 ├── KEYMAPS.md               # Comprehensive keymap reference
+├── AGENTS.md                # AI agent context documentation
 ├── .gitignore               # Git ignore rules
 ├── .neoconf.json            # Neoconf configuration
 ├── lua/
@@ -26,7 +28,8 @@ A modern, modular Neovim configuration focused on LSP, code completion, fuzzy fi
 │   │   ├── ui.lua          # UI plugins (neo-tree, lualine, etc.)
 │   │   ├── code.lua        # Code completion and formatting
 │   │   ├── colorscheme.lua # Colorscheme plugins
-│   │   └── ai.lua          # AI integrations (Sidekick)
+│   │   ├── ai.lua          # AI integrations (Copilot + cursor-agent)
+│   │   └── others.lua      # Other plugins (Marp, Persisted)
 │   └── lang/               # Language-specific configurations
 │       └── java.lua        # Java development with JDTLS
 └── after/
@@ -52,7 +55,9 @@ A modern, modular Neovim configuration focused on LSP, code completion, fuzzy fi
 - **Live grep**: `<leader>sg`
 - **Buffers**: `<leader>sb`
 - **Help tags**: `<leader>sh`
-- **Extensions**: FZF native, Smart Open
+- **Keymaps**: `<leader>sk`
+- **Sessions**: `<leader>ss` (persisted.nvim integration)
+- **Extensions**: FZF native, Smart Open, Persisted
 
 #### LSP & Language Support
 - **LSP Config**: Neovim native LSP
@@ -65,7 +70,13 @@ A modern, modular Neovim configuration focused on LSP, code completion, fuzzy fi
 - **Auto-install**: Enabled
 
 #### Code Features
-- **Completion**: mini.completion with LSP integration
+- **Completion**: blink.cmp with LSP integration
+  - `<Tab>` - Select next completion (or NES if no menu)
+  - `<S-Tab>` - Select previous completion
+  - `<CR>` - Accept completion
+  - `<C-Space>` - Show/toggle completion menu
+  - `<C-e>` - Hide completion menu
+  - `<C-u>`/`<C-d>` - Scroll documentation
 - **Snippets**: mini.snippets with friendly-snippets
 - **Formatting**: conform.nvim with formatters:
   - Lua: stylua
@@ -87,23 +98,35 @@ A modern, modular Neovim configuration focused on LSP, code completion, fuzzy fi
 - **Key Help**: which-key.nvim (`<leader>?`)
 
 #### AI Integration
-- **Sidekick**: AI-powered code suggestions and CLI integration
-  - Toggle CLI: `<C-.>` or `<leader>aa`
+- **NES (Next Edit Suggestions)**: Copilot CLI with LSP mode for inline code suggestions
+  - Accept suggestion: `<M-l>` (Alt+l)
+  - Next suggestion: `<M-]>` (Alt+])
+  - Previous suggestion: `<M-[>` (Alt+[)
+  - Dismiss: `<M-e>` (Alt+e)
+  - Accept/Navigate with Tab: `<Tab>`
+- **Agentic Window**: cursor-agent via zellij mux for interactive AI assistance
+  - Toggle: `<C-.>` or `<leader>aa`
   - Select agent: `<leader>as`
-  - Detach/close session: `<leader>ad`
+  - Close session: `<leader>ad`
   - Send selection: `<leader>at`
   - Send file: `<leader>af`
   - Send visual: `<leader>av`
   - Select prompt: `<leader>ap`
-  - Apply suggestions: `<Tab>`
 
 #### Mini.nvim Modules
 - **mini.basics**: Basic configurations and mappings
 - **mini.bufremove**: Better buffer deletion (`<leader>bd`)
 - **mini.comment**: Fast commenting (`gcc`, `gcl`, `gcv`, `gct`)
-- **mini.completion**: Lightweight completion
 - **mini.snippets**: Snippet engine
 - **mini.icons**: Icon provider
+
+#### Other Plugins
+- **blink.cmp**: Fast, extensible completion engine (Rust-based)
+- **blink.indent**: Indent guides integration
+- **persisted.nvim**: Session management via Telescope (`<leader>ss`)
+- **marp-nvim**: Markdown presentation support
+  - Toggle preview: `<leader>MT`
+  - Status: `<leader>MS`
 
 ## Key Mappings
 
@@ -145,8 +168,12 @@ A modern, modular Neovim configuration focused on LSP, code completion, fuzzy fi
    - Neovim >= 0.9
    - Git
    - A C compiler (for telescope-fzf-native)
+   - Rust with nightly toolchain (for blink.cmp: `rustup toolchain install nightly`)
    - ripgrep (for live_grep)
    - fd (optional, for better file finding)
+   - copilot CLI (for NES inline suggestions)
+   - cursor-agent (optional, for agentic window)
+   - zellij (optional, for agentic window mux backend)
 
 2. **Install**:
    ```bash
@@ -173,6 +200,9 @@ A modern, modular Neovim configuration focused on LSP, code completion, fuzzy fi
 - All plugin configs are modular and can be disabled by commenting out the require in `lua/setup/plugins.lua`
 - The configuration uses stable branches where available for reliability
 - A comprehensive keymap reference is available in `KEYMAPS.md`
+- AI agent context is documented in `AGENTS.md`
+- Tab key intelligently prioritizes: blink.cmp menu → NES suggestions → normal Tab
+- blink.cmp requires Rust with nightly toolchain for compilation
 
 ## License
 

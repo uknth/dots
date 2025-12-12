@@ -27,5 +27,8 @@ else
   echo "Not a Darwin System, skipping..."
 fi
 
+echo "> Install nightly rust"
+rustup install nightly
+
 
 echo "Bootstrapped -----------------"

@@ -1,7 +1,22 @@
+-- LSP Configuration
 require("pckr").add({
-	{ "neovim/nvim-lspconfig", tag = "v2.5.0" },
-
 	{
+    -- default neovim LSP
+    "neovim/nvim-lspconfig",
+    tag = "v2.5.0",
+    requires = {
+      {"saghen/blink.cmp"},
+    },
+    config = function()
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
+
+      require('lspconfig')['lua_ls'].setup({ capabilities = capabilities })
+      require('lspconfig')['gopls'].setup({ capabilities = capabilities })
+      require('lspconfig')['jdtls'].setup({ capabilities = capabilities })
+    end
+  },
+	{
+    -- Mason to download LSP servers
 		"mason-org/mason.nvim",
 		config = function()
 			require("mason").setup({
@@ -12,8 +27,8 @@ require("pckr").add({
       })
 		end,
 	},
-
 	{
+    -- configure existing lsp servers
 		"mason-org/mason-lspconfig.nvim",
 		requires = {
 			{ "mason-org/mason.nvim" },

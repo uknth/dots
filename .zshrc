@@ -134,5 +134,9 @@ if [[ -d "$HOME/.codeium/windsurf/bin" ]]; then
     export PATH="/Users/uknth/.codeium/windsurf/bin:$PATH"
 fi
 
+export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 export PATH="/opt/homebrew/opt/sqlite/bin:/opt/homebrew/opt:/Users/uknth/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
 source <(fzf --zsh)
+eval "$(zoxide init zsh)"

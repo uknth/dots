@@ -1,3 +1,4 @@
+-- Treesitter, requires Treesitter binary and some compilations
 require("pckr").add({
 	"nvim-treesitter/nvim-treesitter",
 	branch = "master",

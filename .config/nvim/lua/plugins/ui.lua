@@ -8,7 +8,6 @@ require("pckr").add({
 		require("mini.icons").setup()
 	end,
 })
-
 -- NeoTree for file explorer
 require("pckr").add({
 	{ "MunifTanjim/nui.nvim" },
@@ -34,7 +33,6 @@ require("pckr").add({
 		end,
 	},
 })
-
 -- keymaps for neo-tree
 --
 -- bind: <leader>e => Toggle Explorer
@@ -47,7 +45,7 @@ vim.keymap.set("n", "<leader>nl", "<cmd>Neotree position=left<cr>", { desc = "Sh
 vim.keymap.set("n", "<leader>nb", "<cmd>Neotree position=float buffers", { desc = "Show floating buffer" })
 -- bind: <leader>ng => Floating git status
 vim.keymap.set("n", "<leader>ng", "<cmd>Neotree position=float status", { desc = "Show floating Git status" })
-
+--
 -- Status Lines & Buffers
 require("pckr").add({
 	{
@@ -63,8 +61,6 @@ require("pckr").add({
 		end,
 	},
 })
-
-
 -- UI elements using Noice
 -- plugin that completely replaces the UI for messages, cmdline and the popupmenu
 --
@@ -99,7 +95,6 @@ require('pckr').add{
     end
   }
 }
-
 -- Whichkey to show suggestions  of neovim keymaps
 --
 require('pckr').add({
@@ -109,7 +104,6 @@ require('pckr').add({
     end
   }
 })
-
 -- bind: <leader>? => show 'whichkey' suggestions
 vim.keymap.set("n", "<leader>?", function()
   require("which-key").show({ global = false })
