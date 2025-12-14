@@ -135,7 +135,7 @@ if [[ -d "$HOME/.codeium/windsurf/bin" ]]; then
 fi
 
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
-export PATH="/opt/homebrew/opt/sqlite/bin:/opt/homebrew/opt:/Users/uknth/.cargo/bin:$PATH"
+export PATH="/opt/homebrew/opt/sqlite/bin:/opt/homebrew/bin:/opt/homebrew/opt:/opt/homebrew/opt/bin:/Users/uknth/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 source <(fzf --zsh)
