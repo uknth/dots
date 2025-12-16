@@ -22,8 +22,6 @@ require("pckr").add({
 			require("mason").setup({
 				ensure_installed = {
           -- java
-					"java-debug-adapter",
-					"java-test",
 				},
 			})
 		end,
