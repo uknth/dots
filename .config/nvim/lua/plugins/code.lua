@@ -1,24 +1,23 @@
 --
 -- Code Outline
 require("pckr").add({
-  {
-    "stevearc/aerial.nvim",
-    config = function()
-      require("aerial").setup({
-        on_attach = function(bufnr)
-          -- Jump forwards/backwards with '{' and '}'
-          vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-          vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-        end,
-      })
-    end,
-  }
+	{
+		"stevearc/aerial.nvim",
+		config = function()
+			require("aerial").setup({
+				on_attach = function(bufnr)
+					-- Jump forwards/backwards with '{' and '}'
+					vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+					vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+				end,
+			})
+		end,
+	},
 })
-
 
 -- Code Completion using mini.completion
 require("pckr").add({
-  -- completion source - snippet
+	-- completion source - snippet
 	{
 		"rafamadriz/friendly-snippets",
 	},
@@ -58,39 +57,37 @@ require("pckr").add({
 	--
 	--    end,
 	-- },
-  {
-    'saghen/blink.cmp',
-    requires = {
-      'rafamadriz/friendly-snippets',
-    },
-    run = "cargo +nightly build --release",
-    config = function()
-      require('blink.cmp').setup({
-        keymap = {
-          preset = 'none',
-          ['<Tab>'] = { 'select_next', 'fallback' },
-          ['<S-Tab>'] = { 'select_prev', 'fallback' },
-          ['<CR>'] = { 'accept', 'fallback' },
-          ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-          ['<C-e>'] = { 'hide' },
-          ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
-          ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
-        },
-        completion = {
-          documentation = {
-            auto_show = false,
-          },
-          -- trigger = { prefetch_on_insert = false },
-        },
-        sources = {
-          default = { 'lsp', 'path', 'buffer', 'snippets' },
-        },
-      })
-    end
-  },
+	{
+		"saghen/blink.cmp",
+		requires = {
+			"rafamadriz/friendly-snippets",
+		},
+		run = "cargo +nightly build --release",
+		config = function()
+			require("blink.cmp").setup({
+				keymap = {
+					preset = "none",
+					["<Tab>"] = { "select_next", "fallback" },
+					["<S-Tab>"] = { "select_prev", "fallback" },
+					["<CR>"] = { "accept", "fallback" },
+					["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
+					["<C-e>"] = { "hide" },
+					["<C-u>"] = { "scroll_documentation_up", "fallback" },
+					["<C-d>"] = { "scroll_documentation_down", "fallback" },
+				},
+				completion = {
+					documentation = {
+						auto_show = false,
+					},
+					-- trigger = { prefetch_on_insert = false },
+				},
+				sources = {
+					default = { "lsp", "path", "buffer", "snippets" },
+				},
+			})
+		end,
+	},
 })
-
-
 
 -- Code Formatting
 require("pckr").add({
@@ -113,18 +110,18 @@ require("pckr").add({
 	},
 })
 
-require('pckr').add ({
-  -- indent guide
-  {
-    'saghen/blink.indent',
-    config = function()
-      require('blink.indent').setup({
-        mappings = {
-          border = 'none',
-        }
-      })
-    end
-  },
+require("pckr").add({
+	-- indent guide
+	{
+		"saghen/blink.indent",
+		config = function()
+			require("blink.indent").setup({
+				mappings = {
+					border = "none",
+				},
+			})
+		end,
+	},
 })
 
 -- bind: <leader>ff => format code
@@ -134,3 +131,26 @@ end, { desc = "Code Format" })
 
 vim.keymap.set("n", "<leader>fo", "<cmd>AerialToggle!<CR>", { desc = "Toggle Outline" })
 
+require("pckr").add({
+	{
+		"folke/todo-comments.nvim",
+		requires = {
+			{ "nvim-lua/plenary.nvim" },
+		},
+    config = function()
+      require("todo-comments").setup({})
+    end
+	},
+})
+
+-- keymap for todo comments
+vim.keymap.set("n", "]t", function()
+  require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "[t", function()
+  require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
+
+vim.keymap.set("n", "<leader>tt", "<cmd>TodoQuickFix<cr>", { desc = "Toggle TODO Quickfix Box" })
+vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", { desc = "Search TODOs in Telescope" })

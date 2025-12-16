@@ -6,4 +6,4 @@ require("setup.keymaps")
 require("setup.lang")
 -- set colorscheme and extra configurations here
 --
-vim.cmd("colorscheme nordfox")
+vim.cmd("colorscheme github_light_colorblind")

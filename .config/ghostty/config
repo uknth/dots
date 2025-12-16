@@ -1,5 +1,6 @@
-theme = "Nordfox"
+theme = "Github Light Colorblind"
 font-family = "CaskaydiaCove Nerd Font Mono"
+# font-family = "RobotoMono Nerd Font Mono"
 command = /bin/zsh --login --interactive
 font-size = 14
 keybind = shift+enter=text:\x1b\r

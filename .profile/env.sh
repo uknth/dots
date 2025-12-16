@@ -8,7 +8,37 @@ if [ -d "$HOME/.local/bin" ]; then
 fi
 
 
-export GOPATH=$HOME/.local/share/go
-export PATH="$HOME/.bin:$PATH"
-export PATH="$PATH:$GOPATH/bin"
+export GOPATH="$HOME/.local/share/go"
+export BREWPATH="/opt/homebrew"
+export CARGOPATH="$HOME/.cargo"
+export MYBINPATH="$HOME/.bin"
 
+export PATH="$GOPATH/bin:$PATH"
+export PATH="$CARGOPATH/bin:$PATH"
+export PATH="$BREWPATH/opt/sqlite/bin:$BREWPATH/opt/rustup/bin:$BREWPATH/bin:$PATH"
+export PATH="$MYBINPATH:$PATH"
+
+if command -v zoxide &> /dev/null; then
+	eval "$(zoxide init zsh)"
+fi
+
+if command -v fzf &> /dev/null; then
+    source <(fzf --zsh)
+fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+if [[ -s "$HOME/.docker/completions" ]]; then
+    fpath=(/Users/uknth/.docker/completions $fpath)
+    autoload -Uz compinit
+    compinit
+fi
+# End of Docker CLI completions
+
+# Added by Windsurf
+if [[ -d "$HOME/.codeium/windsurf/bin" ]]; then
+    export PATH="/Users/uknth/.codeium/windsurf/bin:$PATH"
+fi

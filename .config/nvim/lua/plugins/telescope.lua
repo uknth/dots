@@ -66,3 +66,5 @@ vim.keymap.set("n", "<leader>sb", require("telescope.builtin").buffers, { desc =
 vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp tags" })
 
 vim.keymap.set("n", "<leader>sk", require("telescope.builtin").keymaps, { desc = "[S]earch [K]eymaps" })
+
+vim.keymap.set("n", "<leader>sd", require("telescope.builtin").lsp_document_symbols, { desc = "[S]earch [D]ocument Symbols" })

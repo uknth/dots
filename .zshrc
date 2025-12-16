@@ -116,27 +116,3 @@ if [ -d "$HOME/.profile" ]; then
 	unset i
 fi
 
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-if [[ -s "$HOME/.docker/completions" ]]; then
-    fpath=(/Users/uknth/.docker/completions $fpath)
-    autoload -Uz compinit
-    compinit
-fi
-# End of Docker CLI completions
-
-# Added by Windsurf
-if [[ -d "$HOME/.codeium/windsurf/bin" ]]; then
-    export PATH="/Users/uknth/.codeium/windsurf/bin:$PATH"
-fi
-
-export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
-export PATH="/opt/homebrew/opt/sqlite/bin:/opt/homebrew/bin:/opt/homebrew/opt:/opt/homebrew/opt/bin:/Users/uknth/.cargo/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-
-source <(fzf --zsh)
-eval "$(zoxide init zsh)"

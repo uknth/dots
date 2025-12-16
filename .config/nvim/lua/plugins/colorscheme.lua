@@ -2,6 +2,17 @@
 --
 require("pckr").add({
   {
+    "projekt0n/github-nvim-theme",
+    config = function ()
+      require('github-theme').setup({
+        styles = {
+          comments = 'NONE',
+          types = 'bold',
+        },
+      })
+    end
+  },
+  {
     "bluz71/vim-moonfly-colors",
     config = function()
       vim.g.moonflyItalics = false

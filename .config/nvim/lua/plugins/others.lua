@@ -27,20 +27,6 @@ require('pckr').add({
       require('telescope').load_extension('persisted')
     end,
   },
-  -- Obsidian Vault
-  {
-    "obsidian-nvim/obsidian.nvim",
-    config = function()
-      require('obsidian').setup({
-        workspaces = {
-          {
-            name = "Tangerine",
-            path = "~/Documents/Tangerine/"
-          },
-        }
-      })
-    end
-  },
 })
 -- Marp Binding
 vim.keymap.set("n", "<leader>MT", "<cmd>MarpToggle<cr>", { noremap = true, silent = true })

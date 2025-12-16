@@ -29,6 +29,16 @@ require("pckr").add({
 				clipboard = {
 					sync = "universal",
 				},
+        close_if_last_window = true,
+        enable_git_status = true,
+        buffers = {
+          follow_current_file = true,
+          group_empty_dirs = true,
+        },
+        filesystem = {
+          follow_current_file = true,
+          group_empty_dirs = false,
+        }
 			})
 		end,
 	},
