@@ -21,5 +21,7 @@ git_clone_data_platform() {
     git clone "https://ujjwal.kanth%40harness.io:$PAT@git0.harness.io/l7B_kbSEQD2wjrM7PShm5w/PROD/Data_Platform/$1.git"
 }
 
-alias cc="cursor-agent"
-alias ca="cursor-agent"
+alias ca="CURSOR_AGENT_BIN=/Users/uknth/.local/bin/cursor-agent agent.sh cursor-agent"
+alias cursor-agent="CURSOR_AGENT_BIN=/Users/uknth/.local/bin/cursor-agent agent.sh cursor-agent"
+alias cursor="CURSOR_AGENT_BIN=/Users/uknth/.local/bin/cursor-agent agent.sh cursor-agent"
+alias claude="CLAUDE_BIN=/opt/homebrew/bin/claude agent.sh claude"

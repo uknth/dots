@@ -62,17 +62,31 @@ yadm push
 
 Location: `.config/nvim/`
 
-Plugin categories:
-- `ai.lua` - AI assistance plugins
-- `code.lua` - Code editing enhancements
-- `colorscheme.lua` - Theme configuration
-- `lsp.lua` - Language Server Protocol
-- `mini.lua` - mini.nvim suite
-- `telescope.lua` - Fuzzy finder
-- `treesitter.lua` - Syntax parsing
-- `ui.lua` - UI enhancements
+**Configuration Structure:**
+- `lua/setup/` - Core configuration modules (vim, pckr, diagnostics, plugins, keymaps, lang)
+- `lua/plugins/` - Plugin configurations by category
+- `lua/lang/` - Language-specific configurations
+- `after/ftplugin/` - Filetype-specific settings
 
-See `.config/nvim/KEYMAPS.md` for key bindings.
+**Plugin categories:**
+- `ai.lua` - AI assistance (Copilot NES, agentic window)
+- `code.lua` - Code editing (completion, snippets, formatting)
+- `colorscheme.lua` - Theme configuration (NordFox, Moonfly)
+- `lsp.lua` - Language Server Protocol with Mason
+- `mini.lua` - mini.nvim suite (basics, bufremove, comment, snippets, icons)
+- `telescope.lua` - Fuzzy finder with extensions
+- `treesitter.lua` - Syntax parsing
+- `ui.lua` - UI enhancements (neo-tree, lualine, bufferline, noice, which-key)
+- `others.lua` - Session management, presentations
+
+**Language-specific configs:**
+- `java.lua` - Java development with JDTLS
+- `go.lua` - Go development with go.nvim
+
+**Documentation:**
+- `.config/nvim/README.md` - User documentation
+- `.config/nvim/KEYMAPS.md` - Comprehensive keymap reference
+- `.config/nvim/AGENTS.md` - AI agent context documentation
 
 ### Terminal Emulators
 
@@ -89,6 +103,7 @@ See `.config/nvim/KEYMAPS.md` for key bindings.
 fd, fzf, ripgrep, gitui, lazygit, tree, wget, zellij, zoxide
 go, node, rust, rustup, luarocks, tree-sitter-cli
 helm, kind, skaffold, gcloud-cli
+copilot (GitHub Copilot CLI)
 ```
 
 #### GUI Applications
@@ -129,10 +144,11 @@ zola-*          # Dockerized Zola static site generator
 
 ### Integration Tools
 
-- **fzf** - Command-line fuzzy finder
+- **fzf** - Command-line fuzzy finder with shell integration
 - **zoxide** - Smarter cd command
 - **SDKMAN** - Java version management
-- **rustup** - Rust toolchain management
+- **rustup** - Rust toolchain management (with nightly for blink.cmp)
+- **Copilot CLI** - GitHub Copilot for terminal and AI assistance
 - Docker Desktop with CLI completions
 
 ## Configuration Highlights
@@ -140,9 +156,15 @@ zola-*          # Dockerized Zola static site generator
 ### Zsh Theme
 Using `robbyrussell` theme from Oh My Zsh.
 
-### Editor
-Primary: Neovim with lazy plugin management
-Default: vim (fallback)
+### Neovim
+- **Colorscheme**: NordFox (nightfox.nvim)
+- **Plugin Manager**: pckr.nvim
+- **Completion Engine**: blink.cmp (Rust-based, requires nightly toolchain)
+- **AI Integration**: 
+  - NES (Next Edit Suggestions) via Copilot CLI
+  - Agentic window via cursor-agent with zellij mux
+- **Language Support**: Go, Java, Lua, Python, Rust, JavaScript, and more
+- **Key Documentation**: See KEYMAPS.md and AGENTS.md in .config/nvim/
 
 ### Path Extensions
 ```bash
